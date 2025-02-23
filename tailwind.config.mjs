@@ -10,6 +10,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#6C63FF", // ✅ Added custom primary color
       },
     },
   },
