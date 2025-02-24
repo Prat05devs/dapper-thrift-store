@@ -1,5 +1,11 @@
 import { Facebook, X, Instagram, Mail, Youtube, Phone, MailIcon } from "lucide-react";
 
+const locations = [
+  { name: "Dehradun", country: "India" },
+  { name: "Delhi", country: "India" },
+  { name: "Bangalore", country: "India" }
+];
+
 export default function Footer() {
   return (
     <footer className="relative bg-black text-white py-12 mt-20">
@@ -59,60 +65,11 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Location Section - Now Below Social Icons */}
-          <div className="mt-6">
-            <p className="text-lg font-semibold text-gray-400">
-              Location{" "}
-              <span className="italic text-green-400 hover:cursor-pointer relative group">
-                Dehradun
-                {/* Hover Card */}
-                <div className="absolute top-[-90px] left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out bg-white rounded-xl shadow-lg w-40 h-24 border-2 border-green-300 opacity-0 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-green-100 rounded-xl"></div>
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  <div className="absolute top-[3px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-700 border-4 border-white rounded-full shadow-lg animate-pulse"></div>
-                    <span className="text-green-800 font-bold text-lg">Dehradun</span>
-                    <p className="text-gray-600 text-sm">India</p>
-                  </div>
-                </div>
-              </span>
-              , India
-            </p>
-          </div>
-          <div className="mt-1">
-            <p className="text-lg font-semibold text-gray-400">
-              Location{" "}
-              <span className="italic text-green-400 hover:cursor-pointer relative group">
-                Delhi
-                {/* Hover Card */}
-                <div className="absolute top-[-90px] left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out bg-white rounded-xl shadow-lg w-40 h-24 border-2 border-green-300 opacity-0 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-green-100 rounded-xl"></div>
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  <div className="absolute top-[3px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-700 border-4 border-white rounded-full shadow-lg animate-pulse"></div>
-                    <span className="text-green-800 font-bold text-lg">Delhi</span>
-                    <p className="text-gray-600 text-sm">India</p>
-                  </div>
-                </div>
-              </span>
-              , India
-            </p>
-          </div>
-          <div className="mt-1">
-            <p className="text-lg font-semibold text-gray-400">
-              Location{" "}
-              <span className="italic text-green-400 hover:cursor-pointer relative group">
-                Bangalore
-                {/* Hover Card */}
-                <div className="absolute top-[-90px] left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out bg-white rounded-xl shadow-lg w-40 h-24 border-2 border-green-300 opacity-0 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-green-100 rounded-xl"></div>
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  <div className="absolute top-[3px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-700 border-4 border-white rounded-full shadow-lg animate-pulse"></div>
-                    <span className="text-green-800 font-bold text-lg">Bangalore</span>
-                    <p className="text-gray-600 text-sm">India</p>
-                  </div>
-                </div>
-              </span>
-              , India
-            </p>
+          {/* Locations Section */}
+          <div className="mt-6 space-y-2">
+            {locations.map((location, index) => (
+              <Location key={index} name={location.name} country={location.country} />
+            ))}
           </div>
         </div>
       </div>
@@ -122,5 +79,32 @@ export default function Footer() {
         © 2025 Dapper. All rights reserved.
       </div>
     </footer>
+  );
+}
+
+/* ✅ Reusable Location Component */
+function Location({ name, country }) {
+  return (
+    <div className="relative group">
+      <p className="text-lg font-semibold text-gray-400">
+        Location{" "}
+        <span className="italic text-green-400 hover:cursor-pointer relative">
+          {name}
+          {/* Hover Card */}
+          <div className="absolute top-[-90px] left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out bg-white rounded-xl shadow-lg w-40 h-24 border-2 border-green-300 opacity-0 group-hover:opacity-100">
+            <div className="absolute inset-0 bg-green-100 rounded-xl"></div>
+            <div className="relative w-full h-full flex flex-col items-center justify-center">
+              
+              {/* ✅ Adjusted Pulse Animation to Avoid Overlap */}
+              <div className="absolute top-[6px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-700 border-4 border-white rounded-full shadow-lg animate-pulse"></div>
+              
+              <span className="text-green-800 font-bold text-lg mt-4">{name}</span>
+              <span className="text-gray-600 text-sm">{country}</span>
+            </div>
+          </div>
+        </span>
+        , {country}
+      </p>
+    </div>
   );
 }
